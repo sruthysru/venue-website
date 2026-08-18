@@ -328,20 +328,28 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
             className="contact-form"
             onSubmit={(e) => {
               e.preventDefault()
-              alert('Thanks! This is a demo form — hook it up to POST /api/bookings on the Express server.')
+              const form = e.target
+              const name = form.name.value
+              const phone = form.phone.value
+              const date = form.date.value
+              const purpose = form.purpose.value
+
+              const message = `Hi Frame House, I'd like to enquire about a booking.%0A%0AName: ${name}%0APhone: ${phone}%0APreferred Date: ${date}%0APurpose: ${purpose}`
+              const whatsappNumber = '916282388736'
+              window.open(`https://wa.me/${whatsappNumber}?text=${message}`,'_blank')
             }}
           >
-            <input type="text" placeholder="Your name" required />
-            <input type="tel" placeholder="Phone number" required />
-            <input type="date" required />
-            <select defaultValue="">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="tel" name="phone" placeholder="Phone number" required />
+            <input type="date" name='date' required />
+            <select name='purpose' defaultValue="">
               <option value="" disabled>Purpose</option>
               <option>Photoshoot</option>
               <option>Birthday Party</option>
               <option>Film / Content Shoot</option>
               <option>Other</option>
             </select>
-            <button className="btn-primary" type="submit">Send Enquiry</button>
+            <button className="btn-primary" type="submit">Send Enquiry via WhatsApp</button>
           </form>
         </div>
       </section>
