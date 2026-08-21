@@ -6,18 +6,22 @@ import postOffice from './assets/gallery/traditional/post-office.jpg'
 import floralWall from './assets/gallery/traditional/floral-wall.jpg'
 import marigoldArch from './assets/gallery/traditional/marigold-arch.jpg'
 import keralaHouse from './assets/gallery/traditional/kerala-house.jpg'
+import pavilion from './assets/gallery/traditional/pavilion.jpg'
+
 
 // Western frames — modern arch & minimal sets
 import blueArch from './assets/gallery/western/blue-arch.jpg'
 import purpleArch from './assets/gallery/western/purple-arch.jpg'
 import whiteArch from './assets/gallery/western/white-arch.jpg'
-import pavilion from './assets/gallery/western/pavilion.jpg'
+
 
 // Motion column images
-import m1 from './assets/gallery/motion/m1.jpg'
+import m1 from './assets/gallery/motion/m1.png'
 import m2 from './assets/gallery/motion/m2.jpg'
 import m3 from './assets/gallery/motion/m3.jpg'
-import m4 from './assets/gallery/motion/m4.jpg'
+import m4 from './assets/gallery/motion/m4.webp'
+import m5 from './assets/gallery/motion/m5.jpg'
+import m6 from './assets/gallery/motion/m6.jpg'
 
 // Props & furniture available for shoots
 import guitarProp from './assets/gallery/props/guitar.jpg'
@@ -40,13 +44,14 @@ const TRADITIONAL = [
   { src: floralWall, label: 'Floral Panel Wall' },
   { src: marigoldArch, label: 'Marigold Arch' },
   { src: keralaHouse, label: 'Tharavadu Courtyard' },
+  { src: pavilion, label: 'Garden Pavilion' },
+  
 ]
 
 const WESTERN = [
   { src: blueArch, label: 'Indigo Archway' },
   { src: purpleArch, label: 'Violet Double Arch' },
   { src: whiteArch, label: 'Minimal White Arch' },
-  { src: pavilion, label: 'Garden Pavilion' },
 ]
 
 const PROPS = [
