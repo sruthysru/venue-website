@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import { readdirSync, statSync } from 'fs'
+import { readdirSync, statSync, renameSync } from 'fs'
 import { join, extname } from 'path'
 
 const SOURCE_DIR = 'src/assets/gallery'
@@ -19,19 +19,35 @@ function walk(dir) {
   return files
 }
 
-async function compress(path) {
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function compress(path, attempt = 1) {
   const originalSize = statSync(path).size
-  const buffer = await sharp(path)
-    .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-    .jpeg({ quality: QUALITY })
-    .toBuffer()
+  try {
+    const buffer = await sharp(path)
+      .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+      .jpeg({ quality: QUALITY })
+      .toBuffer()
 
-  const fs = await import('fs/promises')
-  await fs.writeFile(path, buffer)
+    const tempPath = path + '.tmp'
+    const fs = await import('fs/promises')
+    await fs.writeFile(tempPath, buffer)
+    renameSync(tempPath, path)
 
-  const newSize = buffer.length
-  const saved = ((1 - newSize / originalSize) * 100).toFixed(0)
-  console.log(`${path}: ${(originalSize/1024).toFixed(0)}KB -> ${(newSize/1024).toFixed(0)}KB (saved ${saved}%)`)
+    const newSize = buffer.length
+    const saved = ((1 - newSize / originalSize) * 100).toFixed(0)
+    console.log(`${path}: ${(originalSize/1024).toFixed(0)}KB -> ${(newSize/1024).toFixed(0)}KB (saved ${saved}%)`)
+  } catch (e) {
+    if (attempt < 3) {
+      console.log(`Retry ${attempt} for ${path}...`)
+      await wait(500)
+      await compress(path, attempt + 1)
+    } else {
+      console.log(`FAILED after 3 attempts: ${path} — ${e.message}`)
+    }
+  }
 }
 
 const files = walk(SOURCE_DIR)
