@@ -246,7 +246,7 @@ export default function App() {
               <li><span>Parking</span> On-site, free for booked shoots</li>
               <li><span>Nearest landmark</span> 4 km from Palakkad Town</li>
             </ul>
-            <a className="btn-ghost" href="https://www.google.com/maps/place/Frame+House+Palakkad/@10.675668889467092,76.65482157504039,17z" target="_blank" rel="noreferrer">
+            <a className="btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=10.675668889467092,76.65482157504039" target="_blank" rel="noreferrer">
               Get Directions →
             </a>
           </div>
