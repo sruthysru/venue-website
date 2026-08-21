@@ -7,6 +7,7 @@ import floralWall from './assets/gallery/traditional/floral-wall.jpg'
 import marigoldArch from './assets/gallery/traditional/marigold-arch.jpg'
 import keralaHouse from './assets/gallery/traditional/kerala-house.jpg'
 import pavilion from './assets/gallery/traditional/pavilion.jpg'
+import slopedroofcanopy from './assets/gallery/traditional/sloped-roof canopy'
 
 
 // Western frames — modern arch & minimal sets
@@ -45,6 +46,7 @@ const TRADITIONAL = [
   { src: marigoldArch, label: 'Marigold Arch' },
   { src: keralaHouse, label: 'Tharavadu Courtyard' },
   { src: pavilion, label: 'Garden Pavilion' },
+  { src: slopedroofcanopy, label: 'Sloped-roof Canopy'}
   
 ]
 
