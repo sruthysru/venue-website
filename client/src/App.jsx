@@ -260,9 +260,9 @@ export default function App() {
             <h3>Frame House</h3>
             <p className="mono">Vettumpully,<br />Palakkad, Kerala</p>
             <ul>
-              <li><span>Open</span> Mon – Sun, 6:00 AM – 6:00 PM</li>
+              <li><span>Open</span> Mon – Sun, 6:00 AM – 7:00 PM</li>
               <li><span>Parking</span> On-site, free for booked shoots</li>
-              <li><span>Nearest landmark</span> 4 km from Palakkad Town</li>
+              <li><span>Nearest landmark</span> near Govt HSS Koduvayur</li>
             </ul>
             <a className="btn-ghost" href="https://www.google.com/maps/place/MMG4%2B7X6+Frame+House+Palakkad,+Koduvayur,+Kerala+678501/data=!4m2!3m1!1s0x3ba8130073d254cf:0x15ef192b93b7377a" target="_blank" rel="noreferrer">
   Get Directions →
@@ -279,7 +279,7 @@ export default function App() {
         </div>
         <div className="contact-grid">
           <div className="contact-info">
-            <p><span className="mono">Call / WhatsApp</span> +91 88484 77706 / 96337 77706 / 62823 88736</p>
+            <p><span className="mono">Call / WhatsApp</span> +91 88484 77706 / 62823 88736</p>
             <p><span className="mono">Email</span> framehousepalakkad@gmail.com</p>
             <p><span className="mono">Instagram</span> @framehousepalakkad</p>
           </div>
