@@ -7,7 +7,7 @@ import floralWall from './assets/gallery/traditional/floral-wall.jpg'
 import marigoldArch from './assets/gallery/traditional/marigold-arch.jpg'
 import keralaHouse from './assets/gallery/traditional/kerala-house.jpg'
 import pavilion from './assets/gallery/traditional/pavilion.jpg'
-import slopedroofcanopy from './assets/gallery/traditional/sloped-roof canopy'
+import slopedroofcanopy from './assets/gallery/traditional/sloped-roof canopy.jpg'
 
 
 // Western frames — modern arch & minimal sets
