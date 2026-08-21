@@ -49,11 +49,6 @@ const WESTERN = [
   { src: pavilion, label: 'Garden Pavilion' },
 ]
 
-const MOTION_COL_A = [m1, m2]
-const MOTION_COL_B = [m3, m4]
-const MOTION_COL_C = [m2, m1]
-const MOTION_COL_D = [m4, m3]
-
 const PROPS = [
   { src: guitarProp, label: 'Vintage Acoustic Guitar' },
   { src: standsProp, label: 'Iron Flower Stands (Set of 3)' },
@@ -98,45 +93,7 @@ export default function App() {
   const [tab, setTab] = useState('traditional')
   const [menuOpen, setMenuOpen] = useState(false)
   const scrollY = useScrollY()
-  const motionRef = useRef(null)
-  const trackRef = useRef(null)      
-const colARef = useRef(null)     
-const colBRef = useRef(null)       
-  const [inView, setInView] = useState(false)
-
-  // Only animate once the motion section is near the viewport, keeps math cheap
-  useEffect(() => {
-    const el = motionRef.current
-    if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { rootMargin: '200px 0px' }
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
-  // Offset derived from scroll position relative to the section.
-  // Column A drifts opposite to Column B, so the whole strip feels alive
-  // while it moves up on scroll-down and back down on scroll-up.
- let offsetA = 0
-let offsetB = 0
-if (inView && motionRef.current && trackRef.current && colARef.current && colBRef.current) {
-  const rect = motionRef.current.getBoundingClientRect()
-  const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-
-  const trackHeight = trackRef.current.offsetHeight
-  const rangeA = colARef.current.scrollHeight - trackHeight
-  const rangeB = colBRef.current.scrollHeight - trackHeight
-
-  const isMobile = window.innerWidth <= 900
-  const speedA = isMobile ? 1.4 : 1
-  const speedB = isMobile ? 0.2 : 1   // lower = slower; tweak this number
-
-  offsetA = (progress - 0.5) * 5 * rangeA * speedA
-  offsetB = (0.5 - progress) * 20 * rangeB * speedB
-}
-
+  
   return (
     <div className="page">
       {/* NAV */}
@@ -165,8 +122,8 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
         <img className="hero-bg" src={keralaHouse} alt="Tharavadu courtyard set" />
         <div className="hero-scrim" />
         <div className="hero-content">
-          <span className="eyebrow">A Standing-Set Backlot for Shoots & Celebrations</span>
-          <h1>Eight Facades.<br />One Field of Paddy Green.</h1>
+          <span className="eyebrow"></span>
+          <h1>Nine Facades.<br />One Field of Paddy Green.</h1>
           <p>
             A curated backlot in the paddy fields of Palakkad — hand-painted postal
             counters, festival arches and a century-old tharavadu, built to be walked
@@ -184,7 +141,7 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
         <div className="about-item">
           <span className="about-num">01</span>
           <h3>Photoshoots</h3>
-          <p>Editorial, pre-wedding, product and portrait shoots across eight distinct sets in a single visit.</p>
+          <p>Editorial, pre-wedding, product and portrait shoots across nine distinct sets in a single visit.</p>
         </div>
         <div className="about-item">
           <span className="about-num">02</span>
@@ -199,8 +156,8 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
       </section>
 
       {/* MOTION COLUMN — images pan with scroll direction, caption text stays fixed */}
-      <section className="motion" id="motion" ref={motionRef}>
-        <div className="motion-text">
+      <section className="showcase" id="showcase">
+        <div className="showcase-text">
           <span className="eyebrow">The Location Diary</span>
           <h2>Where stories come<br />to life.</h2>
           <p>
@@ -208,34 +165,18 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
             thoughtfully chosen, and unforgettable on screen.
           </p>
         </div>
-       <div className="motion-track" ref={trackRef}>
-  <div
-    className="motion-col"
-    ref={colARef}
-    style={{ transform: `translateY(${offsetA}px)` }}
-  >
-    {[m1, m2, m3].map((src, i) => (
-      <img key={i} src={src} alt="Venue set in motion" />
-    ))}
-  </div>
-  <div
-    className="motion-col motion-col-b"
-    ref={colBRef}
-    style={{ transform: `translateY(${offsetB}px)` }}
-  >
-    {[m2, m4, m2].map((src, i) => (
-      <img key={i} src={src} alt="Venue set in motion" />
-    ))}
-  </div>
-  <div
-    className="motion-col"
-    style={{ transform: `translateY(${offsetA}px)` }}
-  >
-    {[m3, m1, m3].map((src, i) => (
-      <img key={i} src={src} alt="Venue set in motion" />
-    ))}
-  </div>
-</div>
+        <div className="showcase-images">
+          <div className='showcase-row'>
+            <div className="showcase-card"><img src={m1} alt="Set detail"/></div>
+            <div className="showcase-card"><img src={m2} alt="Set detail" /></div>
+            <div className="showcase-card"><img src={m3} alt="Set detail"/></div>
+          </div>
+          <div className="showcase-row">
+            <div className="showcase-card"><img src={m4} alt="Set detail" /></div>
+            <div className="showcase-card"><img src={postOffice} alt="Set detail" /></div>
+            <div className="showcase-card"><img src={blueArch} alt="Set detail" /></div>
+          </div>
+        </div>
       </section>
 
       {/* GALLERY */}
@@ -292,7 +233,7 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
           <div className="location-map">
             <iframe
               title="Frame House location map"
-              src="https://www.google.com/maps?q=Palakkad,Kerala&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.760760421967!2d76.65482157504039!3d10.675668889467092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8130073d254cf%3A0x15ef192b93b7377a!2sFrame%20House%20Palakkad!5e0!3m2!1sen!2sin!4v1787290517253!5m2!1sen!2sin"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
@@ -301,11 +242,11 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
             <h3>Frame House</h3>
             <p className="mono">Vettumpully,<br />Palakkad, Kerala</p>
             <ul>
-              <li><span>Open</span> Mon – Sun, 8:00 AM – 6:30 PM</li>
+              <li><span>Open</span> Mon – Sun, 6:00 AM – 6:00 PM</li>
               <li><span>Parking</span> On-site, free for booked shoots</li>
               <li><span>Nearest landmark</span> 4 km from Palakkad Town</li>
             </ul>
-            <a className="btn-ghost" href="https://maps.google.com" target="_blank" rel="noreferrer">
+            <a className="btn-ghost" href="https://www.google.com/maps/place/Frame+House+Palakkad/@10.675668889467092,76.65482157504039,17z" target="_blank" rel="noreferrer">
               Get Directions →
             </a>
           </div>
@@ -356,7 +297,6 @@ if (inView && motionRef.current && trackRef.current && colARef.current && colBRe
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} Frame House, Palakkad</span>
-        <span className="mono">Sample content — replace with real details</span>
       </footer>
     </div>
   )
