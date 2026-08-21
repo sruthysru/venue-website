@@ -184,8 +184,8 @@ export default function App() {
           </div>
           <div className="showcase-row">
             <div className="showcase-card" onClick={() => setLightboxImg(m4)} ><img src={m4} alt="Set detail" /></div>
-            <div className="showcase-card" onClick={() => setLightboxImg(postOffice)} ><img src={postOffice} alt="Set detail" /></div>
-            <div className="showcase-card" onClick={() => setLightboxImg(blueArch)} ><img src={blueArch} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m5)} ><img src={m5} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m6)} ><img src={m6} alt="Set detail" /></div>
           </div>
         </div>
       </section>
