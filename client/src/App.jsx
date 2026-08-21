@@ -76,11 +76,11 @@ function useScrollY() {
   return scrollY
 }
 
-function GalleryGrid({ items }) {
+function GalleryGrid({ items, onImageClick }) {
   return (
     <div className="gallery-grid">
       {items.map((item, i) => (
-        <figure className="gallery-card" key={i}>
+        <figure className="gallery-card" key={i} onClick={() => onImageClick(item.src)}>
           <img src={item.src} alt={item.label} loading="lazy" />
           <figcaption>{item.label}</figcaption>
         </figure>
@@ -89,10 +89,21 @@ function GalleryGrid({ items }) {
   )
 }
 
+function Lightbox({ src, onClose }) {
+  if (!src) return null
+  return (
+    <div className="lightbox" onClick={onClose}>
+      <img src={src} alt="Preview" onClick={(e) => e.stopPropagation()} />
+      <button className="lightbox-close" onClick={onClose}>✕</button>
+    </div>
+  )
+}
+
 export default function App() {
   const [tab, setTab] = useState('traditional')
   const [menuOpen, setMenuOpen] = useState(false)
   const scrollY = useScrollY()
+  const [lightboxImg, setLightboxImg] = useState(null)
   
   return (
     <div className="page">
@@ -155,7 +166,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* MOTION COLUMN — images pan with scroll direction, caption text stays fixed */}
+      {/* SHOWCASE SECTION */}
       <section className="showcase" id="showcase">
         <div className="showcase-text">
           <span className="eyebrow">The Location Diary</span>
@@ -167,14 +178,14 @@ export default function App() {
         </div>
         <div className="showcase-images">
           <div className='showcase-row'>
-            <div className="showcase-card"><img src={m1} alt="Set detail"/></div>
-            <div className="showcase-card"><img src={m2} alt="Set detail" /></div>
-            <div className="showcase-card"><img src={m3} alt="Set detail"/></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m1)} ><img src={m1} alt="Set detail"/></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m2)} ><img src={m2} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m3)} ><img src={m3} alt="Set detail"/></div>
           </div>
           <div className="showcase-row">
-            <div className="showcase-card"><img src={m4} alt="Set detail" /></div>
-            <div className="showcase-card"><img src={postOffice} alt="Set detail" /></div>
-            <div className="showcase-card"><img src={blueArch} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(m4)} ><img src={m4} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(postOffice)} ><img src={postOffice} alt="Set detail" /></div>
+            <div className="showcase-card" onClick={() => setLightboxImg(blueArch)} ><img src={blueArch} alt="Set detail" /></div>
           </div>
         </div>
       </section>
@@ -203,7 +214,7 @@ export default function App() {
             Western Frames
           </button>
         </div>
-        <GalleryGrid items={tab === 'traditional' ? TRADITIONAL : WESTERN} />
+        <GalleryGrid items={tab === 'traditional' ? TRADITIONAL : WESTERN} onImageClick={setLightboxImg} />
       </section>
 
       {/* PROPS & FURNITURE */}
@@ -215,7 +226,7 @@ export default function App() {
         </div>
         <div className="gallery-grid props-grid">
           {PROPS.map((item, i) => (
-            <figure className="gallery-card" key={i}>
+            <figure className="gallery-card" key={i} onClick={() => setLightboxImg(item.src)}>
               <img src={item.src} alt={item.label} loading="lazy" />
               <figcaption>{item.label}</figcaption>
             </figure>
@@ -246,9 +257,9 @@ export default function App() {
               <li><span>Parking</span> On-site, free for booked shoots</li>
               <li><span>Nearest landmark</span> 4 km from Palakkad Town</li>
             </ul>
-            <a className="btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=10.675668889467092,76.65482157504039" target="_blank" rel="noreferrer">
-              Get Directions →
-            </a>
+            <a className="btn-ghost" href="https://www.google.com/maps/place/MMG4%2B7X6+Frame+House+Palakkad,+Koduvayur,+Kerala+678501/data=!4m2!3m1!1s0x3ba8130073d254cf:0x15ef192b93b7377a" target="_blank" rel="noreferrer">
+  Get Directions →
+</a>
           </div>
         </div>
       </section>
@@ -298,6 +309,7 @@ export default function App() {
       <footer className="footer">
         <span>© {new Date().getFullYear()} Frame House, Palakkad</span>
       </footer>
+      <Lightbox src={lightboxImg} onClose={() => setLightboxImg(null)} />
     </div>
   )
 }
