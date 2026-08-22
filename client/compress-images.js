@@ -3,8 +3,8 @@ import { readdirSync, statSync, renameSync } from 'fs'
 import { join, extname } from 'path'
 
 const SOURCE_DIR = 'src/assets/gallery'
-const MAX_WIDTH = 1600
-const QUALITY = 75
+const MAX_WIDTH = 1000
+const QUALITY = 65
 
 function walk(dir) {
   let files = []
