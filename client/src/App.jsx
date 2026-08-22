@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
+import keralahousehero from './public/kerala-house-hero.jpg'
 // ---- Gallery images ----
 // Traditional frames — heritage & festive sets
 import postOffice from './assets/gallery/traditional/post-office.jpg'
@@ -137,7 +138,7 @@ export default function App() {
 
       {/* HERO */}
       <section className="hero">
-        <img className="hero-bg" src={keralaHouse} alt="Tharavadu courtyard set" />
+        <img className="hero-bg" src={keralahousehero} alt="Tharavadu courtyard set" fetchPriority='high' />
         <div className="hero-scrim" />
         <div className="hero-content">
           <span className="eyebrow"></span>
