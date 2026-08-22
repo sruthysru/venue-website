@@ -1,10 +1,10 @@
 import sharp from 'sharp'
 import { readdirSync, statSync, renameSync } from 'fs'
-import { join, extname } from 'path'
+import { join, extname, dirname, basename } from 'path'
 
 const SOURCE_DIR = 'src/assets/gallery'
 const MAX_WIDTH = 1000
-const QUALITY = 65
+const QUALITY = 70
 
 function walk(dir) {
   let files = []
@@ -19,42 +19,23 @@ function walk(dir) {
   return files
 }
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-async function compress(path, attempt = 1) {
+async function compress(path) {
   const originalSize = statSync(path).size
-  try {
-    const buffer = await sharp(path)
-      .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-      .jpeg({ quality: QUALITY })
-      .toBuffer()
+  const webpPath = join(dirname(path), basename(path, extname(path)) + '.webp')
 
-    const tempPath = path + '.tmp'
-    const fs = await import('fs/promises')
-    await fs.writeFile(tempPath, buffer)
-    renameSync(tempPath, path)
+  const buffer = await sharp(path)
+    .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+    .webp({ quality: QUALITY })
+    .toBuffer()
 
-    const newSize = buffer.length
-    const saved = ((1 - newSize / originalSize) * 100).toFixed(0)
-    console.log(`${path}: ${(originalSize/1024).toFixed(0)}KB -> ${(newSize/1024).toFixed(0)}KB (saved ${saved}%)`)
-  } catch (e) {
-    if (attempt < 3) {
-      console.log(`Retry ${attempt} for ${path}...`)
-      await wait(500)
-      await compress(path, attempt + 1)
-    } else {
-      console.log(`FAILED after 3 attempts: ${path} — ${e.message}`)
-    }
-  }
+  const fs = await import('fs/promises')
+  await fs.writeFile(webpPath, buffer)
+
+  console.log(`${path} -> ${webpPath}: ${(originalSize/1024).toFixed(0)}KB -> ${(buffer.length/1024).toFixed(0)}KB`)
 }
 
 const files = walk(SOURCE_DIR)
-console.log(`Found ${files.length} images. Compressing...\n`)
-
 for (const file of files) {
   await compress(file)
 }
-
-console.log('\nDone.')
+console.log('\nDone. Now update your imports in App.jsx from .jpg to .webp')
