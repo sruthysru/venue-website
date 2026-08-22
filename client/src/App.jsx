@@ -1,45 +1,45 @@
 import { useEffect, useRef, useState } from 'react'
 
-import keralahousehero from './public/kerala-house-hero.jpg'
+
 // ---- Gallery images ----
 // Traditional frames — heritage & festive sets
-import postOffice from './assets/gallery/traditional/post-office.jpg'
-import floralWall from './assets/gallery/traditional/floral-wall.jpg'
-import marigoldArch from './assets/gallery/traditional/marigold-arch.jpg'
-import keralaHouse from './assets/gallery/traditional/kerala-house.jpg'
-import pavilion from './assets/gallery/traditional/pavilion.jpg'
-import slopedroofcanopy from './assets/gallery/traditional/sloped-roof canopy.jpg'
+import postOffice from './assets/gallery/traditional/post-office.webp'
+import floralWall from './assets/gallery/traditional/floral-wall.webp'
+import marigoldArch from './assets/gallery/traditional/marigold-arch.webp'
+import keralaHouse from './assets/gallery/traditional/kerala-house.webp'
+import pavilion from './assets/gallery/traditional/pavilion.webp'
+import slopedroofcanopy from './assets/gallery/traditional/sloped-roof canopy.webp'
 
 
 // Western frames — modern arch & minimal sets
-import blueArch from './assets/gallery/western/blue-arch.jpg'
-import purpleArch from './assets/gallery/western/purple-arch.jpg'
-import whiteArch from './assets/gallery/western/white-arch.jpg'
+import blueArch from './assets/gallery/western/blue-arch.webp'
+import purpleArch from './assets/gallery/western/purple-arch.webp'
+import whiteArch from './assets/gallery/western/white-arch.webp'
 
 
 // Motion column images
-import m1 from './assets/gallery/motion/m1.png'
-import m2 from './assets/gallery/motion/m2.jpg'
-import m3 from './assets/gallery/motion/m3.jpg'
+import m1 from './assets/gallery/motion/m1.webp'
+import m2 from './assets/gallery/motion/m2.webp'
+import m3 from './assets/gallery/motion/m3.webp'
 import m4 from './assets/gallery/motion/m4.webp'
-import m5 from './assets/gallery/motion/m5.jpg'
-import m6 from './assets/gallery/motion/m6.jpg'
+import m5 from './assets/gallery/motion/m5.webp'
+import m6 from './assets/gallery/motion/m6.webp'
 
 // Props & furniture available for shoots
-import guitarProp from './assets/gallery/props/guitar.jpg'
-import standsProp from './assets/gallery/props/stands.jpg'
-import vaseProp from './assets/gallery/props/vase.jpg'
-import lanternsProps from './assets/gallery/props/lanterns.jpg'
-import violinProps from './assets/gallery/props/violin.jpg'
-import woodenchairProps from './assets/gallery/props/woodenChair.jpg'
-import candlestandsProps from './assets/gallery/props/candleStands.jpg'
-import clothsProps from './assets/gallery/props/cloths.jpg'
-import flowerProps from './assets/gallery/props/flower.jpg'
-import foldingchairProps from './assets/gallery/props/foldingChair.jpg'
-import lampProps from './assets/gallery/props/lamp.jpg'
-import casioProps from './assets/gallery/props/casio.jpg'
-import radioProps from './assets/gallery/props/radio.jpg'
-import redstoolProps from './assets/gallery/props/redStools.jpg'
+import guitarProp from './assets/gallery/props/guitar.webp'
+import standsProp from './assets/gallery/props/stands.webp'
+import vaseProp from './assets/gallery/props/vase.webp'
+import lanternsProps from './assets/gallery/props/lanterns.webp'
+import violinProps from './assets/gallery/props/violin.webp'
+import woodenchairProps from './assets/gallery/props/woodenChair.webp'
+import candlestandsProps from './assets/gallery/props/candleStands.webp'
+import clothsProps from './assets/gallery/props/cloths.webp'
+import flowerProps from './assets/gallery/props/flower.webp'
+import foldingchairProps from './assets/gallery/props/foldingChair.webp'
+import lampProps from './assets/gallery/props/lamp.webp'
+import casioProps from './assets/gallery/props/casio.webp'
+import radioProps from './assets/gallery/props/radio.webp'
+import redstoolProps from './assets/gallery/props/redStools.webp'
 
 const TRADITIONAL = [
   { src: postOffice, label: 'Postal Facade' },
@@ -138,7 +138,7 @@ export default function App() {
 
       {/* HERO */}
       <section className="hero">
-        <img className="hero-bg" src={keralahousehero} alt="Tharavadu courtyard set" fetchPriority='high' />
+        <img className="hero-bg" src="/kerala-house-hero.webp" alt="Tharavadu courtyard set" fetchPriority='high' />
         <div className="hero-scrim" />
         <div className="hero-content">
           <span className="eyebrow"></span>
